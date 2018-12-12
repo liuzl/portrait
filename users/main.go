@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	gopilosa "github.com/pilosa/go-pilosa"
@@ -57,6 +58,7 @@ func (m *Main) Run() error {
 }
 
 func parseUserRecord(u *fake.User) pdk.PilosaRecord {
+	fmt.Printf("%+v\n", u)
 	ret := pdk.PilosaRecord{
 		Col: u.ID,
 		Rows: []pdk.Row{
