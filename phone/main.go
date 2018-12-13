@@ -37,13 +37,18 @@ func main() {
 	}()
 
 	schema := gopilosa.NewSchema()
-	index := schema.Index(*pilosaIndex)
-	pdk.NewRankedField(index, "domain", 10000)
-	pdk.NewRankedField(index, "usertype", 100)
-	pdk.NewRankedField(index, "day", 10000)
-	pdk.NewRankedField(index, "mday", 10000)
-	pdk.NewRankedField(index, "month", 13)
-	pdk.NewRankedField(index, "year", 100)
+	index := schema.Index(*pilosaIndex, gopilosa.OptIndexKeys(true))
+	index.Field("domain",
+		gopilosa.OptFieldTypeSet(gopilosa.CacheTypeRanked, 10000),
+		gopilosa.OptFieldKeys(true))
+	/*
+		pdk.NewRankedField(index, "domain", 10000)
+		pdk.NewRankedField(index, "usertype", 100)
+		pdk.NewRankedField(index, "day", 10000)
+		pdk.NewRankedField(index, "mday", 10000)
+		pdk.NewRankedField(index, "month", 13)
+		pdk.NewRankedField(index, "year", 100)
+	*/
 
 	indexer, err := pdk.SetupPilosa([]string{*pilosaHost}, *pilosaIndex, schema, uint(1000000))
 	if err != nil {
