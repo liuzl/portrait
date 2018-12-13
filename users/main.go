@@ -38,7 +38,7 @@ func (m *Main) Run() error {
 	src := fake.NewUserSource(m.Seed, m.Num)
 
 	schema := gopilosa.NewSchema()
-	idx := schema.Index("users")
+	idx := schema.Index("users", gopilosa.OptIndexKeys(true))
 	idx.Field("age", gopilosa.OptFieldTypeInt(0, 112))
 	idx.Field("lastname", gopilosa.OptFieldTypeSet(gopilosa.CacheTypeRanked, 50000), gopilosa.OptFieldKeys(true))
 	idx.Field("firstname", gopilosa.OptFieldTypeSet(gopilosa.CacheTypeRanked, 10000), gopilosa.OptFieldKeys(true))
@@ -58,9 +58,9 @@ func (m *Main) Run() error {
 }
 
 func parseUserRecord(u *fake.User) pdk.PilosaRecord {
-	fmt.Printf("%+v\n", u)
 	ret := pdk.PilosaRecord{
-		Col: u.ID,
+		//Col: u.ID,
+		Col: u.LastName,
 		Rows: []pdk.Row{
 			{Field: "firstname", ID: u.FirstName},
 			{Field: "lastname", ID: u.LastName},
@@ -71,6 +71,7 @@ func parseUserRecord(u *fake.User) pdk.PilosaRecord {
 	for _, a := range u.Allergies {
 		ret.Rows = append(ret.Rows, pdk.Row{Field: "allergies", ID: a})
 	}
+	fmt.Printf("%+v\n", ret)
 	return ret
 }
 
