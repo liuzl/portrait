@@ -9,7 +9,7 @@ Row(<FIELD>=<VALUE>)
 `Row` returns all keys with value `<VALUE>` on field `<FIELD>` as a set.
 
 ### Examples:
-Query all phone numbers that have accessed `jd.id`:
+Query all users that have accessed `jd.id`:
 ```
 Row(domain="jd.id")
 ```
@@ -23,7 +23,7 @@ Union([ROW_CALL ...])
 `Union` performs a logical `OR` on the result sets of all `ROW_CALL` queries passed to it.
 
 ### Examples:
-Query all phone numbers that have accessed `jd.id` or `alibaba.com`:
+Query all users that have accessed `jd.id` or `alibaba.com`:
 ```
 Union(Row(domain="jd.id"), Row(domain="alibaba.com"))
 ```
@@ -37,7 +37,7 @@ Intersect([ROW_CALL ...])
 `Intersect` performs a logical `AND` on the result sets of all `ROW_CALL` queries passed to it.
 
 ### Examples:
-Query all phone numbers that have accessed `jd.id` and `alibaba.com`:
+Query all users that have accessed `jd.id` and `alibaba.com`:
 ```
 Intersect(Row(domain="jd.id"), Row(domain="alibaba.com"))
 ```
@@ -51,7 +51,7 @@ Difference(<ROW_CALL>, [ROW_CALL ...])
 `Difference` performs a logical `complement` from the first set to the subsequent sets.
 
 ### Examples:
-Query all phone numbers that have accessed `jd.id` but not `alibaba.com`:
+Query all users that have accessed `jd.id` but not `alibaba.com`:
 ```
 Difference(Row(domain="jd.id"), Row(domain="alibaba.com"))
 ```
