@@ -37,8 +37,8 @@ func main() {
 	}()
 
 	schema := gopilosa.NewSchema()
-	index := schema.Index(*pilosaIndex, gopilosa.OptIndexKeys(true))
-	index.Field("domain",
+	idx := schema.Index(*pilosaIndex, gopilosa.OptIndexKeys(true))
+	idx.Field("domain",
 		gopilosa.OptFieldTypeSet(gopilosa.CacheTypeRanked, 10000),
 		gopilosa.OptFieldKeys(true))
 	/*
