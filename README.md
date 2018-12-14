@@ -9,9 +9,9 @@ Row(<FIELD>=<VALUE>)
 `Row` returns all keys with value `<VALUE>` on field `<FIELD>` as a set.
 
 ### Examples:
-Query all users that have accessed `jd.id`:
+Query all users that have accessed `jd.com`:
 ```
-Row(domain="jd.id")
+Row(domain="jd.com")
 ```
 
 ## Union
@@ -23,9 +23,9 @@ Union([ROW_CALL ...])
 `Union` performs a logical `OR` on the result sets of all `ROW_CALL` queries passed to it.
 
 ### Examples:
-Query all users that have accessed `jd.id` or `alibaba.com`:
+Query all users that have accessed `jd.com` or `alibaba.com`:
 ```
-Union(Row(domain="jd.id"), Row(domain="alibaba.com"))
+Union(Row(domain="jd.com"), Row(domain="alibaba.com"))
 ```
 
 ## Intersect
@@ -37,9 +37,9 @@ Intersect([ROW_CALL ...])
 `Intersect` performs a logical `AND` on the result sets of all `ROW_CALL` queries passed to it.
 
 ### Examples:
-Query all users that have accessed `jd.id` and `alibaba.com`:
+Query all users that have accessed `jd.com` and `alibaba.com`:
 ```
-Intersect(Row(domain="jd.id"), Row(domain="alibaba.com"))
+Intersect(Row(domain="jd.com"), Row(domain="alibaba.com"))
 ```
 
 ## Difference
@@ -51,7 +51,7 @@ Difference(<ROW_CALL>, [ROW_CALL ...])
 `Difference` performs a logical `complement` from the first set to the subsequent sets.
 
 ### Examples:
-Query all users that have accessed `jd.id` but not `alibaba.com`:
+Query all users that have accessed `jd.com` but not `alibaba.com`:
 ```
-Difference(Row(domain="jd.id"), Row(domain="alibaba.com"))
+Difference(Row(domain="jd.com"), Row(domain="alibaba.com"))
 ```
