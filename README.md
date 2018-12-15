@@ -1,4 +1,4 @@
-# Query Manual
+# Query Syntax Manual
 
 ## Row
 ### Spec:
