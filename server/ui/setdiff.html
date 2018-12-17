@@ -15,22 +15,24 @@
   </head>
   <body>
     <section class="content-header">
-      <h1>Marketing<small> extractor</small></h1>
-      <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
-        <li class="active">pilosa</li>
-        <li><a href="setdiff.html">setdiff</a></li>
-      </ol>
+        <h1>Marketing<small> extractor</small></h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="index.html">pilosa</a></li>
+            <li class="active">setdiff</li>
+        </ol>
     </section>
 
     <section class="content" style="margin-top:2px;margin-left:10px;margin-right:10px;">
         <div class='row'>
             <div class="form-group">
                 <div class="input-group">
-                    <div class="input-group-addon">File Name</div>
-                    <input class="form-control" type="text" value="lazada.sg" id="file" size="4">
-                    <div class="input-group-addon">Query</div>
-                    <input class="form-control" type="text" value='Row(domain="lazada.sg")' id="query">
+                    <div class="input-group-addon">File1</div>
+                    <input class="form-control" type="text" value="f1.txt" id="f1" size="5">
+                    <div class="input-group-addon">File2</div>
+                    <input class="form-control" type="text" value='f2.txt' id="f2" size="5">
+                    <div class="input-group-addon">File3</div>
+                    <input class="form-control" type="text" value='f3.txt' id="f3" size="5">
                     <span class="input-group-btn"><button id="submit" class="btn btn-default">Run</button></span>
                 </div>
             </div>
@@ -46,6 +48,6 @@
             </div>
         </div>
     </section>
-    <script src="./js/index.js"></script>
+    <script src="./js/setdiff.js"></script>
   </body>
 </html>

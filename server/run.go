@@ -9,7 +9,7 @@ import (
 
 var cfmt = `curl -s localhost:10101/index/phone/query -X POST -d '%s' | jq -r '.results[].keys[]' > %s`
 
-func run(query, file string) {
+func pilosa(query, file string) {
 	_, err := os.Stat(file)
 	if err == nil || !os.IsNotExist(err) {
 		return
@@ -37,4 +37,30 @@ func run(query, file string) {
 	}
 	okfile := file + ".ok"
 	os.OpenFile(okfile, os.O_RDONLY|os.O_CREATE, 0666)
+}
+
+func setdiff(f1, f2, f3 string) error {
+	_, err := os.Stat(f3)
+	if err == nil {
+		return fmt.Errorf("%s already exists", f3)
+	}
+	if !os.IsNotExist(err) {
+		return err
+	}
+	if _, err = os.Stat(f1); err != nil {
+		return err
+	}
+	if _, err = os.Stat(f2); err != nil {
+		return err
+	}
+	c := fmt.Sprintf("grep -vxFf %s %s > %s", f2, f1, f3)
+	cmd := exec.Command("/bin/bash", "-c", c)
+	if err = cmd.Start(); err != nil {
+		return err
+	}
+	if err = cmd.Wait(); err != nil {
+		os.Remove(f3)
+		return err
+	}
+	return nil
 }
